@@ -1,4 +1,4 @@
-import { defineConfig } from "vitepress";
+import { defineConfig, withBase } from "vitepress";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -6,12 +6,12 @@ export default defineConfig({
   title: "AA Docs",
   description: "Guide to using Startale AA stack on Soneium and Minato networks",
   head: [
-    ["link", { rel: "icon", type: "image/png", href: "/startale_icon.png" }],
+    ["link", { rel: "icon", type: "image/png", href: withBase("/startale_icon.png") }],
     ["meta", { name: "viewport", content: "width=device-width, initial-scale=1" }],
   ],
   appearance: "force-dark",
   themeConfig: {
-    logo: { dark: "./public/startale_logo.webp", light: "./public/startale_logo.webp" },
+    logo: withBase("./public/startale_logo.webp"),
     nav: [
       { text: "Home", link: "/" },
       { text: "Guide", link: "/guide/tech-stack" },
