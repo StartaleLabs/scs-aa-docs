@@ -1,4 +1,4 @@
-# Smart Account Dice Roll Demo
+# 💻  UI Integration Demo
 
 This demo showcases a decentralized dice-rolling game that utilizes smart accounts (ERC-7579) and session-based execution. By using session keys, users can roll dice without needing to sign every transaction, enhancing UX while maintaining security.
 

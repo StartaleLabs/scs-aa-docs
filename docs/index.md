@@ -5,20 +5,26 @@ layout: home
 hero:
   name: "Startale AA docs"
   text: "Guide to using Startale AA stack on Soneium and Minato networks"
-  tagline: My great project tagline
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Network and API guide
+      link: guide/tech-stack
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Implementation examples
+      link: examples/sponsorship-pm
+    - theme: alt
+      text: Hackathon support
+      link: support
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Hackathon details
+    details: Check the rules and other details here
+    link: https://soneium.com
+    target: _blank
+  - title: Soneium docs
+    details: Learn more about Soneium and its ecosystem
+    link: https://docs.soneium.org/
+  - title: ACS
+    details: Learn about Astar Contribution Score and how to utilise it
+    link: https://acs.astar.network/
 ---
