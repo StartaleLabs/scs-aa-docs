@@ -11,7 +11,7 @@ export default defineConfig({
   ],
   appearance: "force-dark",
   themeConfig: {
-    logo: "/public/startale_logo.webp",
+    logo: "/startale_logo.webp",
     nav: [
       { text: "Home", link: "/" },
       { text: "Guide", link: "/guide/tech-stack" },
