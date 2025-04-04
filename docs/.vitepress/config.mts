@@ -1,17 +1,18 @@
-import { defineConfig, withBase } from "vitepress";
+import { defineConfig } from "vitepress";
 
+const base = "/scs-aa-docs/";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "/scs-aa-docs/",
   title: "AA Docs",
   description: "Guide to using Startale AA stack on Soneium and Minato networks",
   head: [
-    ["link", { rel: "icon", type: "image/png", href: withBase("/startale_icon.png") }],
+    ["link", { rel: "icon", href: `${base}startale_icon.png` }],
     ["meta", { name: "viewport", content: "width=device-width, initial-scale=1" }],
   ],
   appearance: "force-dark",
   themeConfig: {
-    logo: withBase("./public/startale_logo.webp"),
+    logo: { light: `${base}startale_logo.webp`, dark: `${base}startale_logo.webp` },
     nav: [
       { text: "Home", link: "/" },
       { text: "Guide", link: "/guide/tech-stack" },
