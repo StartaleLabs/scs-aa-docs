@@ -6,7 +6,7 @@ export default defineConfig({
   title: "AA Docs",
   description: "Guide to using Startale AA stack on Soneium and Minato networks",
   head: [
-    ["link", { rel: "icon", type: "image/png", href: "/startale_icon.png" }],
+    ["link", { rel: "icon", type: "image/png", href: "/scs-aa-docs/startale_icon.png" }],
     ["meta", { name: "viewport", content: "width=device-width, initial-scale=1" }],
   ],
   appearance: "force-dark",
