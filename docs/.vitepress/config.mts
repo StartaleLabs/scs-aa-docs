@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "",
-  title: "AA Docs",
+  title: "AA Toolkit docs",
   description: "Guide to using Startale AA stack on Soneium and Minato networks",
   head: [
     ["link", { rel: "icon", type: "image/png", href: "/scs_icon.png" }],
