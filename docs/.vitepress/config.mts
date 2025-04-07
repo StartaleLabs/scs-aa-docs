@@ -52,6 +52,10 @@ export default defineConfig({
     outline: {
       level: "deep",
     },
-    socialLinks: [{ icon: "github", link: "https://github.com/StartaleLabs" }],
+    socialLinks: [
+      { icon: "github", link: "https://github.com/StartaleLabs" },
+      { icon: "telegram", link: "https://t.me/startalecloudservices" },
+      { icon: "discord", link: "https://discord.gg/2GuvSdzx" },
+    ],
   },
 });
