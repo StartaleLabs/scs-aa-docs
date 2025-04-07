@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Startale Cloud Services AA Toolkit docs"
-  text: "Guide to using Startale Cloud Service AA Toolkit on Soneium and Minato"
+  text: "Account Abstraction Toolkit Guide on Soneium and Minato"
 
   actions:
     - theme: brand

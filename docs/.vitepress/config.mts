@@ -4,7 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   base: "",
   title: "AA Toolkit docs",
-  description: "Guide to using Startale AA stack on Soneium and Minato networks",
+  description: "Account Abstraction Toolkit Guide on Soneium and Minato",
   head: [
     ["link", { rel: "icon", type: "image/png", href: "/scs_icon.png" }],
     ["meta", { name: "viewport", content: "width=device-width, initial-scale=1" }],
