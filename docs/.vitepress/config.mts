@@ -3,15 +3,15 @@ import { defineConfig } from "vitepress";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: "",
-  title: "AA Docs",
+  title: "AA Toolkit docs",
   description: "Guide to using Startale AA stack on Soneium and Minato networks",
   head: [
-    ["link", { rel: "icon", type: "image/png", href: "/startale_icon.png" }],
+    ["link", { rel: "icon", type: "image/png", href: "/scs_icon.png" }],
     ["meta", { name: "viewport", content: "width=device-width, initial-scale=1" }],
   ],
   appearance: "force-dark",
   themeConfig: {
-    logo: "/startale_logo.webp",
+    logo: "/scs_logo_white.png",
     nav: [
       { text: "Home", link: "/" },
       { text: "Guide", link: "/guide/tech-stack" },
@@ -52,6 +52,10 @@ export default defineConfig({
     outline: {
       level: "deep",
     },
-    socialLinks: [{ icon: "github", link: "https://github.com/StartaleLabs" }],
+    socialLinks: [
+      { icon: "github", link: "https://github.com/StartaleLabs" },
+      { icon: "telegram", link: "https://t.me/startalecloudservices" },
+      { icon: "discord", link: "https://discord.gg/2GuvSdzx" },
+    ],
   },
 });

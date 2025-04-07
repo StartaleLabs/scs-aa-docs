@@ -3,8 +3,9 @@
 layout: home
 
 hero:
-  name: "Startale AA docs"
-  text: "Guide to using Startale AA stack on Soneium and Minato networks"
+  name: "Startale Cloud Services AA Toolkit docs"
+  text: "Guide to using Startale Cloud Service AA Toolkit on Soneium and Minato"
+
   actions:
     - theme: brand
       text: Network and API guide
@@ -19,12 +20,12 @@ hero:
 features:
   - title: Hackathon details
     details: Check the rules and other details here
-    link: https://soneium.com
+    link: https://soneium.hackerearth.com/
     target: _blank
   - title: Soneium docs
     details: Learn more about Soneium and its ecosystem
     link: https://docs.soneium.org/
-  - title: ACS
-    details: Learn about Astar Contribution Score and how to utilise it
-    link: https://acs.astar.network/
+  - title: Startale docs
+    details: Need help with RPC Nodes?
+    link: https://docs.startale.com/
 ---
