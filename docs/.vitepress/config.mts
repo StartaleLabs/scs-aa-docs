@@ -43,8 +43,14 @@ export default defineConfig({
           items: [
             { text: "Sponsorship Paymaster", link: "/examples/sponsorship-pm" },
             { text: "ERC20 Token Paymaster", link: "/examples/erc20-pm" },
-            { text: "Privy Social Login", link: "/examples/social-login" },
-            { text: "UI integration demo", link: "/examples/ui-demo" },
+            {
+              text: "UI integration demo",
+              items: [
+                { text: "Using the demo", link: "/examples/ui-demo" },
+                { text: "Building a custom ui", link: "/examples/custom-ui" },
+                { text: "Privy Social Login", link: "/examples/social-login" },
+              ],
+            },
           ],
         },
       ],
