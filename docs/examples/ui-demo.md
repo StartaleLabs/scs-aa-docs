@@ -1,4 +1,4 @@
-# 💻  UI Integration Demo
+# UI Integration Demo
 
 This demo showcases a decentralized dice-rolling game that utilizes smart accounts (ERC-7579) and session-based execution.
 By using social login provider (Privy), and session keys, users can create a smart contract wallet and roll dice without needing to sign every transaction, enhancing UX while maintaining security.
@@ -13,7 +13,7 @@ Demo app: [https://aa-demo.scs.startale.com/](https://aa-demo.scs.startale.com/)
 Demo repo: [https://github.com/StartaleLabs/scs-aa-demo-ui](https://github.com/StartaleLabs/scs-aa-demo-ui)
 
 
-## 🚀 How to Use the Demo
+## How to Use the Demo
 
 ### Prerequisites
 

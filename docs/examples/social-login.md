@@ -2,7 +2,7 @@
 
 This guide walks you through how to use [Privy](https://www.privy.io/) for social login and wallet creation with the SCS AA toolkit.
 
-## 📦 Prerequisites
+## Prerequisites
 
 Make sure you have:
 
@@ -11,7 +11,7 @@ Make sure you have:
 - The demo UI cloned: https://github.com/StartaleLabs/scs-aa-demo-ui
 - Dependencies installed with `npm install`
 
-## 🛠 Setup
+## Setup
 
 1. **Install Privy SDK**:
 
@@ -62,7 +62,7 @@ const { wallets } = useWallets();
 - `usePrivy()` gives you login state and methods
 - `useWallets()` gives you the EOA wallet(s) connected via Privy
 
-## 🧠 Creating a Smart Account
+## Creating a Smart Account
 
 After a wallet is connected:
 
@@ -83,7 +83,7 @@ const nexusAccount = await toNexusAccount({
 });
 ```
 
-## 🚪 Logging Out and Cleanup
+## Logging Out and Cleanup
 
 To handle logout and session cleanup:
 
@@ -103,14 +103,14 @@ useEffect(() => {
 }, [authenticated]);
 ```
 
-## 🧪 Dev Notes
+## Dev Notes
 
 - You can test with email login or third-party social logins (Google, etc.)
 - third-party login providers require their respective app ids to be set in Privy dashboard
 - In development, you can inspect wallet connection state by logging `wallets`.
 - For Vite Content Security Policy (CSP) issues, ensure blob and worker-src are allowed.
 
-## 📚 References
+## References
 
 - Privy Docs: [https://docs.privy.io](https://docs.privy.io)
 - React SDK Docs: [https://docs.privy.io/guide/sdk/react](https://docs.privy.io/guide/sdk/react)
