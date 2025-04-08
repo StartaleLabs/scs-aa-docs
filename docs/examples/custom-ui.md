@@ -1,15 +1,15 @@
-## 🔧 How to Create a Custom UI
+# Creating a custom UI for the demo app
 
 This section details the core technologies, smart contracts, and SDKs used in the demo so you can create your own custom interface.
 
-### Key Libraries and SDKs
+## Key Libraries and SDKs
   - `rhinestone/module-sdk`, for interaction with ERC-7579 modules
     - NOTE: for compatibility reasons, the module version is locked to `0.2.3`
   - `@biconomy/abstractjs` instantiate and manage Nexus accounts
   - `viem` for SC interaction from TS
-  - and optionally `wagmi` for ReactJs integration
+  - `@privy-io/react-auth` for interaction with Privy social login features
 
-### Smart Contracts on Soneium Minato
+## Smart Contracts on Soneium Minato
 
 ```
   # Standard entrypoint v0.7.0 address
@@ -29,7 +29,7 @@ This section details the core technologies, smart contracts, and SDKs used in th
   DICE_ROLL_LEDGER_ADDRESS=0x298D8873bA2B2879580105b992049201B60c1975
 ```
 
-### Service Urls
+## Service Urls
 
 ```
 MINATO_RPC=https://rpc.minato.soneium.org
@@ -38,9 +38,38 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
 
 ```
 
-### Custom Implementation Steps
+## Custom Implementation Steps
 
-1. **Initialize clients**
+### 1. **Wrap your app in a `PrivyProvider`**
+
+```jsx
+<PrivyProvider
+      appId="[YOUR_APP_ID]"
+      config={{
+        // Display email and wallet as login methods
+        loginMethods: ["email", "google", "wallet"],
+        appearance: {
+          theme: "light",
+          accentColor: "#676FFF",
+        },
+        // Create embedded wallets for users who don't have a wallet
+        embeddedWallets: {
+          createOnLogin: "all-users",
+          showWalletUIs: false,
+        },
+        supportedChains: [soneiumMinato],
+        defaultChain: soneiumMinato,
+      }}
+    >
+```
+
+[Privy docs](https://docs.privy.io/basics/react/setup)
+
+[Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/blob/ebd86854662add8d1de25a9b853d8f381b856336/src/main.tsx#L17C5-L33C6)
+
+[Privy integration guide](/examples/social-login)
+
+### 2. **Initialize clients**
 
    - Use `viem` to connect to the target chain.
 
@@ -71,7 +100,7 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
     });
    ```
 
-2. **Create a Nexus Smart Account and a client**
+### 3. **Create a Nexus Smart Account and a client**
 
    - Utilize `@biconomy/abstractjs` to instantiate a smart account.
    - Use `window.ethereum` provider as a signer
@@ -81,9 +110,17 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
    ```typescript
    import { type NexusAccount, type NexusClient, createSmartAccountClient, toNexusAccount } from "@biconomy/abstractjs";
 
+    // Convert Privy wallet instance into an EthereumProvider instance
+    const provider = await wallets[0].getEthereumProvider();
+    const walletClient = createWalletClient({
+      account: wallets[0].address as `0x${string}`,
+      chain: soneiumMinato,
+      transport: custom(provider),
+    });
+
     // Create a Nexus account
     const nexusAccountInstance = await toNexusAccount({
-      signer: window.ethereum,
+      signer: walletClient,
       chain,
       transport: http(),
       attesters: [MOCK_ATTESTER_ADDRESS],
@@ -113,22 +150,32 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
           },
         },
         paymasterContext: scsContext,
-        userOperation: {
+      });
+   ```
+
+:::info
+Paymaster actions and userOperation gas estimation can be overridden with custom calculation or passing fixed values by passing the appropriate field into the config object:
+
+```js
+    userOperation: {
           estimateFeesPerGas: async () => {
             return {
               maxFeePerGas: BigInt(10000000),
               maxPriorityFeePerGas: BigInt(10000000),
             };
           },
-        },
-      });
-   ```
-Note: Paymaster actions and userOperation gas estimation are overridden for compatibility with the current version of SCS paymaster.
+        }
 
-3. **Install Social Recovery Module (Optional)**
+```
+:::
 
-    - Set up recovery guardians using `getSocialRecoveryValidator` from `@rhinestone/module-sdk`.
-    - Install it via the `nexusClient.installModule()` function.
+
+
+### 4. **Install Social Recovery Module (Optional)**
+
+- Set up recovery guardians using `getSocialRecoveryValidator` from `@rhinestone/module-sdk`.
+- Install it via the `nexusClient.installModule()` function.
+
     ```typescript
 
     const socialRecovery = getSocialRecoveryValidator({
@@ -191,7 +238,7 @@ Note: Paymaster actions and userOperation gas estimation are overridden for comp
     });
    ```
 
-4. **Enable Smart Session Module**
+### 5. **Enable Smart Session Module**
 
    - Instantiate the session module with `getSmartSessionsValidator`.
    - Install the module and configure it for executing transactions without signing.
@@ -209,7 +256,7 @@ Note: Paymaster actions and userOperation gas estimation are overridden for comp
     });
     ```
 
-5. **Create a Session for Transaction Execution**
+### 6. **Create a Session for Transaction Execution**
 
    - Define permissions for allowed contract calls (e.g., the dice roll function).
    - Enable the session by calling the `enableSessions` function on the Smart Session contract.
@@ -255,7 +302,7 @@ Note: Paymaster actions and userOperation gas estimation are overridden for comp
       };
    ```
 
-6. **Send Transactions Using Session Keys**
+### 7. **Send Transactions Using Session Keys**
 
    - Sign transactions using a generated session key.
    - The app automatically prepares and sends user operations via the Nexus client.
@@ -334,9 +381,10 @@ Note: Paymaster actions and userOperation gas estimation are overridden for comp
       });
     ```
 
-## 🔗 Resources
+## Resources
 
 - [Biconomy AbstractJS Documentation](https://docs.biconomy.io/abstractjs)
 - [Rhinestone Module SDK](https://docs.rhinestone.io/)
+- [Privy Documentation](https://docs.privy.io/basics/get-started/about)
 - [ERC-7579 Standard Proposal](https://eips.ethereum.org/EIPS/eip-7579)
 - [Viem Documentation](https://viem.sh/)
