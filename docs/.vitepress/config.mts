@@ -34,6 +34,10 @@ export default defineConfig({
             { text: "API specs", link: "/guide/api-specs" },
             { text: "UO Status API", link: "/guide/uo-status" },
             { text: "Debugging the UO", link: "/guide/uo-debug" },
+            {
+              text: "Modules",
+              items: [{ text: "Smart Sessions", link: "/guide/modules/sessions" }],
+            },
           ],
         },
       ],
