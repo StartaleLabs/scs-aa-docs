@@ -11,7 +11,7 @@ export default defineConfig({
   ],
   appearance: "force-dark",
   themeConfig: {
-    logo: "/scs_logo_white.png",
+    logo: "/scs_lockup_horizontal_white.svg",
     nav: [
       { text: "Home", link: "/" },
       { text: "Guide", link: "/guide/tech-stack" },
