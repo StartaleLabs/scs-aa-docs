@@ -79,17 +79,6 @@ Let's say Alice wants to play a web3 game that makes frequent moves on-chain. Sh
 
 ---
 
-## Compatibility
-
-Smart Session Modules are built to plug into **ERC-7579-compliant smart accounts**, like those implemented by [Kernel](https://www.zerodev.app/blog/kernel-account-abstraction/).
-
-To integrate, the smart account must:
-- Support the ERC-7579 module interface.
-- Include the session module in its registry.
-- Implement the `validateUserOp` hook to call into the session validator.
-
----
-
 ## References
 
 - [ERC-7579: Modular Smart Accounts](https://eips.ethereum.org/EIPS/eip-7579)
