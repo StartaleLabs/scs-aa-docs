@@ -36,7 +36,7 @@ export default defineConfig({
             { text: "Debugging the UO", link: "/guide/uo-debug" },
             {
               text: "Modules",
-              items: [{ text: "Smart Sessions", link: "/guide/modules/sessions" }],
+              items: [{ text: "Smart Sessions", link: "/guide/modules/smart-session" }],
             },
           ],
         },
