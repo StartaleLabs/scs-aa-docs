@@ -65,7 +65,7 @@ Retrieve the full status and metadata of a given UserOperation.
 | `project_id`      | Optional project associated with the op       |
 | `paymaster_mode`  | `SPONSORSHIP`, `TOKEN`, etc.                  |
 | `status`          | Execution status (`Success`, `Failed`, etc.)  |
-| `data_source`     | Origin of data (`Indexer`, `Relayer`, etc.)   |
+| `data_source`     | Origin of data (`Indexer`, `Paymaster`, etc.)   |
 | `token_address`   | Token used if it's a erc20 token-based api    |
 | `created_at`      | Timestamp when the record was created         |
 | `updated_at`      | Last time the record was updated              |
