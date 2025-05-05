@@ -5,9 +5,6 @@ By using social login provider (Privy), and session keys, users can create a sma
 
 It also features optional social recovery module functionality.
 
-Currently, the demo utilizes Bicomomy's Nexus smart contract wallet implementation with Rhinestone's 7579 modules.
-
-
 Demo app: [https://aa-demo.scs.startale.com/](https://aa-demo.scs.startale.com/)
 
 Demo repo: [https://github.com/StartaleLabs/scs-aa-demo-ui](https://github.com/StartaleLabs/scs-aa-demo-ui)
