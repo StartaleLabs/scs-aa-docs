@@ -3,9 +3,9 @@
 This section details the core technologies, smart contracts, and SDKs used in the demo so you can create your own custom interface.
 
 ## Key Libraries and SDKs
-  - `rhinestone/module-sdk`, for interaction with ERC-7579 modules
+  - `@rhinestone/module-sdk`, for interaction with ERC-7579 modules
     - NOTE: for compatibility reasons, the module version is locked to `0.2.3`
-  - `@biconomy/abstractjs` instantiate and manage Nexus accounts
+  - `startale-aa-sdk` instantiate and manage Startale smart accounts
   - `viem` for SC interaction from TS
   - `@privy-io/react-auth` for interaction with Privy social login features
 
@@ -15,10 +15,10 @@ This section details the core technologies, smart contracts, and SDKs used in th
   # Standard entrypoint v0.7.0 address
   ENTRY_POINT_ADDRESS=0x0000000071727De22E5E9d8BAf0edAc6f37da032
 
-  # Nexus smart contract wallet related contracts
+  # Startale smart contract wallet related contracts
   ACCOUNT_RECOVERY_MODULE_ADDRESS=0xA04D053b3C8021e8D5bF641816c42dAA75D8b597
-  NEXUS_K1_VALIDATOR_ADDRESS=0x9130927806aC54F93Feb58Eb459c08dcA7D116F8
-  NEXUS_K1_VALIDATOR_FACTORY_ADDRESS=0x2ecd86799137FA35De834Da03D876bcc363ec0c3
+  DEFAULT_ECDSA_VALIDATOR_ADDRESS=0xb997E98eB20Aff2a04AfB9e7bDDf0cf02B92f2eB
+  STARTALE_ACCOUNT_FACTORY_ADDRESS=0xF227EB456F1B0AC51b07f451040ec1c44aB8D1aA
   MOCK_ATTESTER_ADDRESS="0xaeD4d8bAa80948d54d33dE041513D30124e1Ae3f"
 
   # ERC-7579 compatible modules
@@ -65,7 +65,7 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
 
 [Privy docs](https://docs.privy.io/basics/react/setup)
 
-[Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/blob/ebd86854662add8d1de25a9b853d8f381b856336/src/main.tsx#L17C5-L33C6)
+[Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/blob/main/src/main.tsx#L17C5-L33C6)
 
 [Privy integration guide](/examples/social-login)
 
@@ -100,15 +100,15 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
     });
    ```
 
-### 3. **Create a Nexus Smart Account and a client**
+### 3. **Create a Startale Smart Account and a client**
 
-   - Utilize `@biconomy/abstractjs` to instantiate a smart account.
+   - Utilize `startale-aa-sdk` to instantiate a smart account.
    - Use `window.ethereum` provider as a signer
    - for backend use a different `signer` instance (f.ex. `viem`'s local wallet)
    - use `createSmartAccountClient` for further interaction with the account
 
    ```typescript
-   import { type NexusAccount, type NexusClient, createSmartAccountClient, toNexusAccount } from "@biconomy/abstractjs";
+    import { createSmartAccountClient, StartaleAccountClient, StartaleSmartAccount, toStartaleSmartAccount } from "startale-aa-sdk";
 
     // Convert Privy wallet instance into an EthereumProvider instance
     const provider = await wallets[0].getEthereumProvider();
@@ -118,21 +118,18 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
       transport: custom(provider),
     });
 
-    // Create a Nexus account
-    const nexusAccountInstance = await toNexusAccount({
-      signer: walletClient,
-      chain,
-      transport: http(),
-      attesters: [MOCK_ATTESTER_ADDRESS],
-      factoryAddress: NEXUS_K1_VALIDATOR_FACTORY_ADDRESS,
-      validatorAddress: NEXUS_K1_VALIDATOR_ADDRESS,
-      index: BigInt(0), //Nonce for account instance
-    });
+    // Create a Startale account
+    const startaleAccountInstance = await toStartaleSmartAccount({
+          signer: walletClient, 
+          chain: chain,
+          transport: http(),
+          index: BigInt(0), // Nonce=index for account instance with same EOA signer as controller
+      });
 
     const scsContext = { calculateGasLimits: false, policyId: "sudo" };
 
-    const nexusClientInstance = createSmartAccountClient({
-        account: nexusAccount,
+    const startaleAccountClientInstance = createSmartAccountClient({
+        account: startaleAccountInstance,
         transport: http(BUNDLER_URL),
         client: publicClient,
         paymaster: {
@@ -149,7 +146,7 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
             return paymasterStubResponse;
           },
         },
-        paymasterContext: scsContext,
+        paymasterContext: scsContext
       });
    ```
 
@@ -174,7 +171,7 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
 ### 4. **Install Social Recovery Module (Optional)**
 
 - Set up recovery guardians using `getSocialRecoveryValidator` from `@rhinestone/module-sdk`.
-- Install it via the `nexusClient.installModule()` function.
+- Install it via the `startaleAccountClientInstance.installModule()` function.
 
     ```typescript
 
@@ -184,7 +181,7 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
       guardians: [guardianAddress],
     });
 
-    const installModuleUserOpHash = await nexusClient.installModule({
+    const installModuleUserOpHash = await startaleAccountClientInstance.installModule({
         module: socialRecoveryModule,
       });
 
@@ -200,8 +197,8 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
         }),
       },
     ];
-    const addGuardianUserOpHash = await nexusClient.sendUserOperation({
-      callData: await nexusClient.account.encodeCalls(calls),
+    const addGuardianUserOpHash = await startaleAccountClientInstance.sendUserOperation({
+      callData: await startaleAccountClientInstance.account.encodeCalls(calls),
     });
 
     // Remove guardian
@@ -225,8 +222,8 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
         }),
       },
     ];
-    const removeGuardianUserOpHash = await nexusClient.sendUserOperation({
-      callData: await nexusClient.account.encodeCalls(calls),
+    const removeGuardianUserOpHash = await startaleAccountClientInstance.sendUserOperation({
+      callData: await startaleAccountClientInstance.account.encodeCalls(calls),
     });
 
     // Get guardians list
@@ -234,7 +231,7 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
       address: ACCOUNT_RECOVERY_MODULE_ADDRESS,
       abi: SocialRecoveryAbi,
       functionName: "getGuardians",
-      args: [nexusClient.account.address],
+      args: [startaleAccountClientInstance.account.address],
     });
    ```
 
@@ -246,12 +243,12 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
     ```typescript
     const sessionsModule = getSmartSessionsValidator({});
 
-    const opHash = await nexusClient.installModule({
+    const opHash = await startaleAccountClientInstance.installModule({
           module: sessionsModule,
         });
 
     // Check
-    const isSmartSessionsModuleInstalled = await nexusClient.isModuleInstalled({
+    const isSmartSessionsModuleInstalled = await startaleAccountClientInstance.isModuleInstalled({
       module: sessionsModule,
     });
     ```
@@ -265,11 +262,11 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
 
     const sessionOwner = privateKeyToAccount(ownerKey as `0x${string}`);
       const sessionsModule = toSmartSessionsValidator({
-        account: nexusClient.account,
+        account: startaleAccountClientInstance.account,
         signer: sessionOwner,
       });
 
-      const nexusSessionClient = nexusClient.extend(smartSessionCreateActions(sessionsModule));
+      const accountSessionClient = startaleAccountClientInstance.extend(smartSessionCreateActions(sessionsModule));
 
       const selector = toFunctionSelector("writeDiceRoll(uint256)");
       const sessionRequestedInfo: CreateSessionDataParams[] = [
@@ -285,12 +282,12 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
         },
       ];
 
-      const createSessionsResponse = await nexusSessionClient.grantPermission({
+      const createSessionsResponse = await accountSessionClient.grantPermission({
         sessionRequestedInfo,
       });
 
       const sessionData: SessionData = {
-        granter: nexusClient.account.address,
+        granter: startaleAccountClientInstance.account.address,
         description: `Session to increment a counter for ${DICE_ROLL_LEDGER_ADDRESS}`,
         sessionPublicKey: sessionOwner.address,
         moduleData: {
@@ -305,23 +302,23 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
 ### 7. **Send Transactions Using Session Keys**
 
    - Sign transactions using a generated session key.
-   - The app automatically prepares and sends user operations via the Nexus client.
+   - The app automatically prepares and sends user operations via the Startale account client.
 
     ```Typescript
 
     const isEnabled = await isSessionEnabled({
-        client: nexusClient.account.client as PublicClient,
+        client: startaleAccountClientInstance.account.client as PublicClient,
         account: {
-          type: "nexus",
-          address: nexusClient.account.address,
+          type: "erc7579-implementation",
+          address: startaleAccountClientInstance.account.address,
           deployedOnChains: [chain.id],
         },
         permissionId: activeSession.moduleData.permissionIds[0],
       });
 
       const sessionOwner = privateKeyToAccount(ownerKey);
-      const smartSessionNexusClient = createSmartAccountClient({
-        account: await toNexusAccount({
+      const smartSessionAccountClient = createSmartAccountClient({
+        account: await toStartaleSmartAccount({
           signer: sessionOwner,
           accountAddress: activeSession.granter,
           chain: chain,
@@ -356,12 +353,12 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
       });
 
       const usePermissionsModule = toSmartSessionsValidator({
-        account: smartSessionNexusClient.account,
+        account: smartSessionAccountClient.account,
         signer: sessionOwner,
         moduleData: activeSession.moduleData,
       });
 
-      const useSmartSessionNexusClient = smartSessionNexusClient.extend(
+      const useSmartSessionAccountClient = smartSessionAccountClient.extend(
         smartSessionUseActions(usePermissionsModule),
       );
 
@@ -371,7 +368,7 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
         args: [BigInt(value)],
       });
 
-      const userOpHash = await useSmartSessionNexusClient.usePermission({
+      const userOpHash = await useSmartSessionAccountClient.usePermission({
         calls: [
           {
             to: DICE_ROLL_LEDGER_ADDRESS,
@@ -383,7 +380,6 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
 
 ## Resources
 
-- [Biconomy AbstractJS Documentation](https://docs.biconomy.io/abstractjs)
 - [Rhinestone Module SDK](https://docs.rhinestone.io/)
 - [Privy Documentation](https://docs.privy.io/basics/get-started/about)
 - [ERC-7579 Standard Proposal](https://eips.ethereum.org/EIPS/eip-7579)

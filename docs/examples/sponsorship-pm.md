@@ -1,6 +1,6 @@
 # ⛽ Sponsorship Paymaster Example
 
-This guide helps you set up a smart account and use SCS’s Sponsorship Paymaster using [`@biconomy/abstractjs`](https://www.npmjs.com/package/@biconomy/abstractjs), [`@privy-io/react-auth`](https://www.npmjs.com/package/@privy-io/react-auth), and [`viem`](https://viem.sh/).
+This guide helps you set up a smart account and use SCS’s Sponsorship Paymaster using [`startale-aa-sdk`](https://www.npmjs.com/package/startale-aa-sdk), [`@privy-io/react-auth`](https://www.npmjs.com/package/@privy-io/react-auth), and [`viem`](https://viem.sh/).
 
 ---
 
@@ -9,7 +9,7 @@ This guide helps you set up a smart account and use SCS’s Sponsorship Paymaste
 Make sure you’ve installed:
 
 ```bash
-yarn add viem @biconomy/abstractjs @privy-io/react-auth
+yarn add viem startale-aa-sdk @privy-io/react-auth
 ```
 
 Also, ensure your app is wrapped in Privy’s `PrivyProvider`.
@@ -30,10 +30,10 @@ const address = wallets[0].address
 
 ---
 
-### 🧠 Step 2: Create Smart Account (`NexusAccount`)
+### 🧠 Step 2: Create Smart Account (`StartaleSmartAccount`)
 
 ```jsx
-import { toNexusAccount } from "@biconomy/abstractjs";
+import { toStartaleSmartAccount } from "startale-aa-sdk";
 import { createWalletClient, custom } from "viem";
 import { soneiumMinato } from "viem/chains";
 
@@ -43,14 +43,11 @@ const signer = createWalletClient({
   transport: custom(provider),
 });
 
-const nexusAccount = await toNexusAccount({
-  signer,
-  chain: soneiumMinato,
-  transport: http(), // can be the same chain RPC
-  attesters: [MOCK_ATTESTER_ADDRESS],
-  factoryAddress: NEXUS_K1_VALIDATOR_FACTORY_ADDRESS,
-  validatorAddress: NEXUS_K1_VALIDATOR_ADDRESS,
-  index: BigInt(1000029),
+const startaleAccount = = await toStartaleSmartAccount({
+  signer: walletClient, 
+  chain: chain,
+  transport: http(),
+  index: BigInt(0), // Nonce=index for account instance with same EOA signer as controller
 });
 
 ```
@@ -60,7 +57,7 @@ const nexusAccount = await toNexusAccount({
 ### 🧪 Step 3: Create Smart Account Client with Sponsorship Paymaster
 
 ```jsx
-import { createSmartAccountClient } from "@biconomy/abstractjs";
+import { createSmartAccountClient } from "startale-aa-sdk";
 import { createPaymasterClient } from "viem/account-abstraction";
 
 const paymasterClient = createPaymasterClient({
@@ -68,7 +65,7 @@ const paymasterClient = createPaymasterClient({
 });
 
 const smartAccountClient = createSmartAccountClient({
-  account: nexusAccount,
+  account: startaleAccount,
   transport: http(BUNDLER_URL),
   client: publicClient, // from `createPublicClient()`
   paymaster: {
@@ -111,7 +108,7 @@ await smartAccountClient.sendTransaction({
 });
 ```
 
-You can also use modules like Social Recovery or Sessions via `abstractjs`.
+You can also use modules like Social Recovery or Sessions via `startale-aa-sdk`.
 
 ---
 

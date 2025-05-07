@@ -75,11 +75,11 @@ const walletClient = createWalletClient({
   transport: custom(provider),
 });
 
-const nexusAccount = await toNexusAccount({
-  signer: walletClient,
-  chain,
+const startaleAccount = await toStartaleSmartAccount({
+  signer: walletClient, 
+  chain: chain,
   transport: http(),
-  ...
+  ...,
 });
 ```
 
