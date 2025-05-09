@@ -25,8 +25,8 @@ JSON-RPC 2.0 over HTTP
 
 Returns a `paymaster` and `paymasterData` based on the provided `UserOperation`.
 
-- **Sponsership PM:** Operations can funded by a paymaster’s sponser account. For now, share you a policy id connected to the paymaster Url that you can use in param which will have ETH to sponser transactions. Only pass PolicyId and not tokenAddress in this case
-- **Token PM:** User Operations can use ERC20 tokens for gas payments using this url. Only pass tokenAddress and not PolicyId
+- **Sponsership PM:** Operations can funded by a paymaster’s sponser account. For now, share you a policy id connected to the paymaster Url that you can use in param which will have ETH to sponser transactions. Only pass PolicyId and not token(value: address of ERC20 token) in this case
+- **Token PM:** User Operations can use ERC20 tokens for gas payments using this url. Only pass token(value: address of ERC20 token) and not PolicyId
 
 **Prerequisite data for request:**
 
@@ -49,7 +49,7 @@ Returns a `paymaster` and `paymasterData` based on the provided `UserOperation`.
     "<ChainIdHexOrDecimal>",
     {
       "calculateGasLimits": true,
-      "tokenAddress": "<OptionalTokenAddress>", // Only for ERC20 paymaster
+      "token": "<OptionalTokenAddress>", // Only for ERC20 paymaster
       "policyId": "<OptionalPolicyId>",         // Only for sponsership paymaster
     }
   ]
@@ -109,7 +109,7 @@ This helps users understand:
   "paymasterAddress": "0x...",
   "feeQuotes": [
     {
-      "tokenAddress": "0x...",
+      "token": "0x...",
       "symbol": "ASTR",
       "decimal": 18,
       "exchangeRate": "0x...",
