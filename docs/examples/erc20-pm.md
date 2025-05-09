@@ -14,7 +14,7 @@ Bridge it to Soneium Minato:
 And then transfer it to your smart-account.
 
 :::info
-💡 Steps are similar to Sponsorship paymaster except in **STEP 3**, in paymasterContext, we use tokenAddress instead of policyId
+💡 Steps are similar to Sponsorship paymaster except in **STEP 3**, in paymasterContext, we use token(value: address of the ERC20 token) instead of policyId
 :::
 
 
@@ -23,7 +23,7 @@ And then transfer it to your smart-account.
      //...
      paymasterContext: {
        calculateGasLimits: true,
-       tokenAddress: "0xE9A198d38483aD727ABC8b0B1e16B2d338CF0391",//erc20 token
+       token: "0xE9A198d38483aD727ABC8b0B1e16B2d338CF0391",//erc20 token
      },
      //...
   }

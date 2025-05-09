@@ -15,7 +15,7 @@
 
 ## Token address list
 
-**Supported tokens and contract addresses: (tokenAddress)**
+**Supported tokens and contract addresses: (token)**
 
 |  | Address |
 | --- | --- |
