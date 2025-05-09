@@ -109,7 +109,7 @@ This helps users understand:
   "paymasterAddress": "0x...",
   "feeQuotes": [
     {
-      "token": "0x...",
+      "tokenAddress": "0x...",
       "symbol": "ASTR",
       "decimal": 18,
       "exchangeRate": "0x...",
