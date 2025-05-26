@@ -13,9 +13,6 @@ hero:
     - theme: alt
       text: Implementation examples
       link: examples/sponsorship-pm
-    - theme: alt
-      text: Hackathon support
-      link: support
 
 features:
   - title: Hackathon details
