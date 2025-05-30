@@ -8,7 +8,7 @@ Make sure you have:
 
 - A Privy app set up at [Privy Dashboard](https://dashboard.privy.io/)
 - Your Privy `appId`
-- The demo UI cloned: https://github.com/StartaleLabs/scs-aa-demo-ui
+- The demo UI cloned: https://github.com/StartaleLabs/scs-aa-demo-ui/tree/feat/privy
 - Dependencies installed with `npm install`
 
 ## Setup

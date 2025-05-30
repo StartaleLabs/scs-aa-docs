@@ -1,4 +1,4 @@
-# Creating a custom UI for the demo app
+# Creating a custom UI for the demo app (Using Dynamic)
 
 This section details the core technologies, smart contracts, and SDKs used in the demo so you can create your own custom interface.
 
@@ -7,7 +7,8 @@ This section details the core technologies, smart contracts, and SDKs used in th
     - NOTE: for compatibility reasons, the module version is locked to `0.2.3`
   - `startale-aa-sdk` instantiate and manage Startale smart accounts
   - `viem` for SC interaction from TS
-  - `@privy-io/react-auth` for interaction with Privy social login features
+  - `@dynamic-labs/sdk-react-core` for interaction with Dynamic social login features
+  - `@dynamic-labs/ethereum` for enabling the Sonieum EVM network during authentication
 
 ## Smart Contracts on Soneium Minato
 
@@ -40,34 +41,22 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
 
 ## Custom Implementation Steps
 
-### 1. **Wrap your app in a `PrivyProvider`**
+### 1. **Wrap your app in a `DynamicContextProvider`**
 
 ```jsx
-<PrivyProvider
-      appId="[YOUR_APP_ID]"
-      config={{
-        // Display email and wallet as login methods
-        loginMethods: ["email", "google", "wallet"],
-        appearance: {
-          theme: "light",
-          accentColor: "#676FFF",
-        },
-        // Create embedded wallets for users who don't have a wallet
-        embeddedWallets: {
-          createOnLogin: "all-users",
-          showWalletUIs: false,
-        },
-        supportedChains: [soneiumMinato],
-        defaultChain: soneiumMinato,
+<DynamicContextProvider
+      settings: {{
+        environmentId="YOUR_ENVIRONMENT_ID",
+        walletConnectors: [EthereumWalletConnectors]
       }}
     >
 ```
 
-[Privy docs](https://docs.privy.io/basics/react/setup)
+[Dynamic docs](https://docs.dynamic.xyz)
 
-[Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/blob/main/src/main.tsx#L17C5-L33C6)
+[Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/tree/dynamic/blob/main/src/main.tsx#L17C5-L33C6)
 
-[Privy integration guide](/examples/social-login)
+[Dynamic integration guide](/examples/social-login-dynamic)
 
 ### 2. **Initialize clients**
 
@@ -108,15 +97,17 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
    - use `createSmartAccountClient` for further interaction with the account
 
    ```typescript
+    import { isEthereumWallet } from "@dynamic-labs/ethereum";
+    import { useDynamicContext } from "@dynamic-labs/sdk-react-core"; 
     import { createSmartAccountClient, StartaleAccountClient, StartaleSmartAccount, toStartaleSmartAccount } from "startale-aa-sdk";
 
-    // Convert Privy wallet instance into an EthereumProvider instance
-    const provider = await wallets[0].getEthereumProvider();
-    const walletClient = createWalletClient({
-      account: wallets[0].address as `0x${string}`,
-      chain: soneiumMinato,
-      transport: custom(provider),
-    });
+    const { primaryWallet } = useDynamicContext();
+
+    if(!isEthereumWallet(primaryWallet)) {
+      console.log('ensure you are using Ethereum')
+    } 
+
+    const walletClient = await primaryWallet.getWalletClient();
 
     // Create a Startale account
     const startaleAccountInstance = await toStartaleSmartAccount({
@@ -381,6 +372,6 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
 ## Resources
 
 - [Rhinestone Module SDK](https://docs.rhinestone.io/)
-- [Privy Documentation](https://docs.privy.io/basics/get-started/about)
+- [Dynamic Documentation](https://docs.dynamic.xyz/)
 - [ERC-7579 Standard Proposal](https://eips.ethereum.org/EIPS/eip-7579)
 - [Viem Documentation](https://viem.sh/)
