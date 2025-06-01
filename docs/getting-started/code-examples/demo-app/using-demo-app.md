@@ -1,5 +1,11 @@
 # UI Integration Demo
 
+:::warning
+
+The demo ap is a static React app, and as such exposes baked-in API keys for bundler and paymaster.
+In production you would need a server component to interact with the APIs securely.
+:::
+
 This demo showcases a decentralized dice-rolling game that utilizes smart accounts (ERC-7579) and session-based execution.
 By using a social login provider (Dynamic or Privy), and session keys, users can create a smart contract wallet, execute arbitrary smart contract functions, and test the smart session module by rolling a dice without needing to sign every transaction, enhancing UX while maintaining security.
 
