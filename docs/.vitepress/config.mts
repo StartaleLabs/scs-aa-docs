@@ -15,8 +15,7 @@ export default defineConfig({
     nav: [
       { text: "Getting started", link: "/getting-started/tech-stack" },
       { text: "Core API", link: "/core-api/smart-accounts-overview" },
-      { text: "Advanced", link: "/examples/parallel-tx" },
-      { text: "Resources", link: "/resources/addresses" },
+      { text: "Advanced", link: "/advanced/parallel-tx" },
       { text: "FAQ", link: "/faq" },
       { text: "Support", link: "/support" },
     ],
@@ -54,6 +53,11 @@ export default defineConfig({
                 { text: "Pay Gas With ERC20", link: "/core-api/gas-abstraction/pay-with-erc20" },
               ],
             },
+            { text: "Resources", items: [
+              { text: "Smart Contracts", link: "/core-api/resources/smart-contracts" },
+              { text: "Paymasters", link: "/core-api/resources/paymasters" },
+              { text: "Audits", link: "/core-api/resources/audits" },
+            ]}
           ],
         },
       ],
@@ -70,19 +74,10 @@ export default defineConfig({
           ]
         }
       ],
-      "/resources/": [
-        {
-          text: "Resources",
-          items: [
-            { text: "Smart Contracts", link: "/resources/smart-contracts" },
-            { text: "Paymasters", link: "/resources/paymasters" },
-            { text: "Audits", link: "/resources/audits" },
-          ],
-        },
-      ],
       "/faq/": [
         {
           text: "FAQ",
+          link: "/faq",
           items: [
             { text: "Common Errors", link: "/faq/common-errors" },
             { text: "How to Debug", link: "/faq/how-to-debug" },
