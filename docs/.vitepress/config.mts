@@ -57,6 +57,8 @@ export default defineConfig({
                 { text: "Pay Gas With ERC20", link: "/core-api/gas-abstraction/pay-with-erc20" },
               ],
             },
+            { text: "API Specification", link: "/core-api/api-specs" },
+            { text: "Status API", link: "/core-api/uo-status" },
             { text: "Resources", items: [
               { text: "Smart Contracts", link: "/core-api/resources/smart-contracts" },
               { text: "Tokens", link: "/core-api/resources/tokens" },

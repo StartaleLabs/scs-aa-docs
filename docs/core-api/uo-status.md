@@ -1,10 +1,10 @@
-# 📊 UO Status API
+# UO Status API
 
 This API allows you to query the status of a specific UserOperation hash and retrieve detailed metadata associated with its lifecycle and execution.
 
 ---
 
-## 📥 Endpoint
+## Endpoint
 
 **GET** `https://userops.scs.startale.com/user_op/<user-op-hash>`
 
@@ -12,7 +12,7 @@ Retrieve the full status and metadata of a given UserOperation.
 
 ---
 
-## 🧾 Sample Response
+## Sample Response
 ```json
 {
   "id": 38,
@@ -55,7 +55,7 @@ Retrieve the full status and metadata of a given UserOperation.
 
 ---
 
-## 🧾 Field Descriptions
+## Field Descriptions
 
 ### Top-Level Fields
 | Field              | Description                                   |
@@ -84,10 +84,9 @@ Includes full details of the submitted operation: calldata, sender, gas values, 
 
 ---
 
-## 🛠️ Use Case
+## Use Case
 You can use this API to:
 - Check whether a user operation was successful
 - Track gas usage per operation
 - Reconcile token or ETH deductions via paymaster
 - Debug signature, nonce, and paymaster data
-
