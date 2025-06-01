@@ -249,7 +249,7 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
    - Define permissions for allowed contract calls (e.g., the dice roll function).
    - Enable the session by calling the `enableSessions` function on the Smart Session contract.
 
-   ```typescript
+```typescript
 
     const sessionOwner = privateKeyToAccount(ownerKey as `0x${string}`);
       const sessionsModule = toSmartSessionsValidator({
@@ -288,14 +288,14 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
           sessions: createSessionsResponse.sessions,
         },
       };
-   ```
+```
 
 ### 7. **Send Transactions Using Session Keys**
 
    - Sign transactions using a generated session key.
    - The app automatically prepares and sends user operations via the Startale account client.
 
-    ```Typescript
+```typescript
 
     const isEnabled = await isSessionEnabled({
         client: startaleAccountClientInstance.account.client as PublicClient,
@@ -367,7 +367,7 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
           },
         ],
       });
-    ```
+```
 
 ## Resources
 
