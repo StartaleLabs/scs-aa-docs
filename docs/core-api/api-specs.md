@@ -33,7 +33,7 @@ Returns a `paymaster` and `paymasterData` based on the provided `UserOperation`.
 - ChainId: 0x79a
 - EntryPointAddress: 0x0000000071727De22E5E9d8BAf0edAc6f37da032
 - calculateGasLimits: Boolean if gas calculations are required
-- TokenAddress: Check the token supported list
+- token: Check the token supported list
 - policyId: This will be shared to you by scs team
 
 #### **Request**
@@ -109,7 +109,7 @@ This helps users understand:
   "paymasterAddress": "0x...",
   "feeQuotes": [
     {
-      "tokenAddress": "0x...",
+      "token": "0x...",
       "symbol": "ASTR",
       "decimal": 18,
       "exchangeRate": "0x...",
