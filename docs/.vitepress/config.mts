@@ -13,9 +13,11 @@ export default defineConfig({
   themeConfig: {
     logo: "/scs_lockup_horizontal_white.svg",
     nav: [
-      { text: "Home", link: "/" },
-      { text: "Guide", link: "/guide/tech-stack" },
-      { text: "Examples", link: "/examples/sponsorship-pm" },
+      { text: "Getting started", link: "/getting-started/tech-stack" },
+      { text: "Core API", link: "/core-api/smart-accounts-overview" },
+      { text: "Advanced", link: "/examples/parallel-tx" },
+      { text: "Resources", link: "/resources/addresses" },
+      { text: "FAQ", link: "/faq" },
       { text: "Support", link: "/support" },
     ],
     docFooter: {
@@ -24,38 +26,67 @@ export default defineConfig({
     },
 
     sidebar: {
-      "/guide/": [
+      "/getting-started/": [
         {
           text: "Guide",
           items: [
-            { text: "Tech stack", link: "/guide/tech-stack" },
-            { text: "Networks", link: "/guide/networks" },
-            { text: "Endpoints", link: "/guide/endpoints" },
-            { text: "API specs", link: "/guide/api-specs" },
-            { text: "UO Status API", link: "/guide/uo-status" },
-            { text: "Debugging the UO", link: "/guide/uo-debug" },
+            { text: "Tech stack", link: "/getting-started/tech-stack" },
+            { text: "Tutorial", link: "/getting-started/tutorial" },
+            { text: "Code Examples", link: "/getting-started/code-examples/index", items: [
+              { text: "Quick start scripts", link: "/getting-started/code-examples/quick-start-scripts" },
+              { text: "Demo app", link: "/getting-started/code-examples/demo-app" },
+            ] },
+          ],
+        },
+      ],
+      "/core-api/": [
+        {
+          text: "Core API",
+          items: [
+            { text: "Smart Accounts Overview", link: "/core-api/smart-accounts-overview" },
+            { text: "Startale Smart Account", link: "/core-api/startale-smart-account" },
+            { text: "Send Transactions", link: "/core-api/send-transactions" },
+            { text: "Batch Transactions", link: "/core-api/batch-transactions" },
             {
-              text: "Modules",
-              items: [{ text: "Smart Sessions", link: "/guide/modules/smart-session" }],
+              text: "Gas Abstraction",
+              items: [
+                { text: "Sponsor Gas", link: "/core-api/gas-abstraction/sponsor-gas" },
+                { text: "Pay Gas With ERC20", link: "/core-api/gas-abstraction/pay-with-erc20" },
+              ],
             },
           ],
         },
       ],
-      "/examples/": [
+      "/advanced/": [
         {
-          text: "Examples",
+          text: "Advanced",
           items: [
-            { text: "Sponsorship Paymaster", link: "/examples/sponsorship-pm" },
-            { text: "ERC20 Token Paymaster", link: "/examples/erc20-pm" },
-            {
-              text: "UI integration demo",
-              items: [
-                { text: "Using the demo", link: "/examples/ui-demo" },
-                { text: "Building a custom ui", link: "/examples/custom-ui" },
-                { text: "Privy Social Login", link: "/examples/social-login" },
-              ],
-            },
+            { text: "Parallel Transactions", link: "/advanced/parallel-tx" },
+            { text: "Chain Abstraction", link: "/advanced/chain-abstraction" },
+            { text: "Using Modules", link: "/advanced/using-modules", items: [
+              { text: "Smart Sessions", link: "/advanced/using-modules/smart-sessions" },
+              { text: "Social Recovery", link: "/advanced/using-modules/social-recovery" },
+            ] },
+          ]
+        }
+      ],
+      "/resources/": [
+        {
+          text: "Resources",
+          items: [
+            { text: "Smart Contracts", link: "/resources/smart-contracts" },
+            { text: "Paymasters", link: "/resources/paymasters" },
+            { text: "Audits", link: "/resources/audits" },
           ],
+        },
+      ],
+      "/faq/": [
+        {
+          text: "FAQ",
+          items: [
+            { text: "Common Errors", link: "/faq/common-errors" },
+            { text: "How to Debug", link: "/faq/how-to-debug" },
+          ]
         },
       ],
     },
