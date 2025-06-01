@@ -21,7 +21,7 @@ JSON-RPC 2.0 over HTTP
 
 `POST method`
 
-### 🔹 `pm_getPaymasterData`
+### `pm_getPaymasterData`
 
 Returns a `paymaster` and `paymasterData` based on the provided `UserOperation`.
 
@@ -72,7 +72,7 @@ Returns a `paymaster` and `paymasterData` based on the provided `UserOperation`.
 }
 ```
 
-### 🔹 `pm_getFeeQuotes`
+### `pm_getFeeQuotes`
 
 Returns token-based fee quotes (in ERC20) to cover the gas for the given UserOperation.
 
@@ -125,7 +125,7 @@ This helps users understand:
 }
 ```
 
-### 🔹 `pm_getPaymasterStubData`
+### `pm_getPaymasterStubData`
 
 Returns a stub `paymasterData` without actual signature logic (useful for gas estimation/simulation).
 
