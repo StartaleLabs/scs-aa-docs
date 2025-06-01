@@ -27,13 +27,17 @@ export default defineConfig({
     sidebar: {
       "/getting-started/": [
         {
-          text: "Guide",
+          text: "Getting Started",
           items: [
             { text: "Tech stack", link: "/getting-started/tech-stack" },
             { text: "Tutorial", link: "/getting-started/tutorial" },
             { text: "Code Examples", link: "/getting-started/code-examples/index", items: [
               { text: "Quick start scripts", link: "/getting-started/code-examples/quick-start-scripts" },
-              { text: "Demo app", link: "/getting-started/code-examples/demo-app" },
+              { text: "Demo app", link: "/getting-started/code-examples/demo-app/using-demo-app", items: [
+                {text: "Social Login", link: "/getting-started/code-examples/demo-app/social-login"},
+                {text: "Custom UI with Dynamic", link: "/getting-started/code-examples/demo-app/custom-ui/dynamic"},
+                {text: "Custom UI with Privy", link: "/getting-started/code-examples/demo-app/custom-ui/privy"},
+              ]},
             ] },
           ],
         },
@@ -55,6 +59,7 @@ export default defineConfig({
             },
             { text: "Resources", items: [
               { text: "Smart Contracts", link: "/core-api/resources/smart-contracts" },
+              { text: "Tokens", link: "/core-api/resources/tokens" },
               { text: "Paymasters", link: "/core-api/resources/paymasters" },
               { text: "Audits", link: "/core-api/resources/audits" },
             ]}
