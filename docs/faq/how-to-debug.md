@@ -230,3 +230,33 @@ console.log("Revert reason:", result.result?.reason);
 ```
 
 - Reach out to us on one of the support channels if you are still not able to pass a successful transaction.
+
+---
+
+- can use this to paste some things
+https://docs.zerodev.app/sdk/faqs/debug-userop
+
+- if sendUserOperation fails you can use the entire userOperation from the logs and simulate that on the entrypoint handleOps method
+
+example simulation: https://www.tdly.co/shared/simulation/b0c33852-4323-43c2-ad90-dc73dcbf4d37
+
+- if anything fails at the gas estimation stage then you can simulate for validateUserOp() or validatePaymasterUserOp()
+
+examples:
+https://www.tdly.co/shared/simulation/a9e766aa-44f5-49fc-b518-200c35e84333
+
+https://www.tdly.co/shared/simulation/76adbc0b-f12f-45ed-b50f-2924d57c5a0c
+
+(one can click on re-simulate and enter their own data. make sure to use latest block accordingly and right from address-entrypoint for example)
+
+- If userOp calldata fails( the actual execution smart account is doing. approve / swap etc for example) then one can directly put calldata on smart account address from entrypoint. which is calldata for execute method
+example
+https://dashboard.tenderly.co/livingrock7/project/simulator/eae3e1b9-8b88-489f-ac61-7941b13256f3
+
+- Sometimes we get errors in hex format and it is tricky to decode function signature or error signature from 4 bytes. Below tools are recommended to get more insight
+
+https://openchain.xyz/signatures
+https://www.4byte.directory/
+
+- Generic decode of calldata can be done by below tool
+https://calldata.swiss-knife.xyz/decoder
