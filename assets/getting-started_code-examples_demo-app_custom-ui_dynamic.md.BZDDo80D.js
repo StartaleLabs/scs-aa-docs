@@ -1,4 +1,4 @@
-import{_ as i,c as a,o as n,ae as t}from"./chunks/framework.Dh1jimFm.js";const c=JSON.parse('{"title":"Creating a custom UI for the demo app (Using Dynamic)","description":"","frontmatter":{},"headers":[],"relativePath":"getting-started/code-examples/demo-app/custom-ui/dynamic.md","filePath":"getting-started/code-examples/demo-app/custom-ui/dynamic.md"}'),e={name:"getting-started/code-examples/demo-app/custom-ui/dynamic.md"};function l(p,s,h,k,r,E){return n(),a("div",null,s[0]||(s[0]=[t(`<h1 id="creating-a-custom-ui-for-the-demo-app-using-dynamic" tabindex="-1">Creating a custom UI for the demo app (Using Dynamic) <a class="header-anchor" href="#creating-a-custom-ui-for-the-demo-app-using-dynamic" aria-label="Permalink to &quot;Creating a custom UI for the demo app (Using Dynamic)&quot;">​</a></h1><p>This section details the core technologies, smart contracts, and SDKs used in the demo so you can create your own custom interface.</p><h2 id="key-libraries-and-sdks" tabindex="-1">Key Libraries and SDKs <a class="header-anchor" href="#key-libraries-and-sdks" aria-label="Permalink to &quot;Key Libraries and SDKs&quot;">​</a></h2><ul><li><code>@rhinestone/module-sdk</code>, for interaction with ERC-7579 modules <ul><li>NOTE: for compatibility reasons, the module version is locked to <code>0.2.3</code></li></ul></li><li><code>startale-aa-sdk</code> instantiate and manage Startale smart accounts</li><li><code>viem</code> for SC interaction from TS</li><li><code>@dynamic-labs/sdk-react-core</code> for interaction with Dynamic social login features</li><li><code>@dynamic-labs/ethereum</code> for enabling the Sonieum EVM network during authentication</li></ul><h2 id="smart-contracts-on-soneium-minato" tabindex="-1">Smart Contracts on Soneium Minato <a class="header-anchor" href="#smart-contracts-on-soneium-minato" aria-label="Permalink to &quot;Smart Contracts on Soneium Minato&quot;">​</a></h2><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>  # Standard entrypoint v0.7.0 address</span></span>
+import{_ as i,c as a,o as n,ae as t}from"./chunks/framework.Dh1jimFm.js";const c=JSON.parse('{"title":"Creating a custom UI for the demo app (Using Dynamic)","description":"","frontmatter":{},"headers":[],"relativePath":"getting-started/code-examples/demo-app/custom-ui/dynamic.md","filePath":"getting-started/code-examples/demo-app/custom-ui/dynamic.md"}'),l={name:"getting-started/code-examples/demo-app/custom-ui/dynamic.md"};function p(h,s,e,k,E,r){return n(),a("div",null,s[0]||(s[0]=[t(`<h1 id="creating-a-custom-ui-for-the-demo-app-using-dynamic" tabindex="-1">Creating a custom UI for the demo app (Using Dynamic) <a class="header-anchor" href="#creating-a-custom-ui-for-the-demo-app-using-dynamic" aria-label="Permalink to &quot;Creating a custom UI for the demo app (Using Dynamic)&quot;">​</a></h1><p>This section details the core technologies, smart contracts, and SDKs used in the demo so you can create your own custom interface.</p><h2 id="key-libraries-and-sdks" tabindex="-1">Key Libraries and SDKs <a class="header-anchor" href="#key-libraries-and-sdks" aria-label="Permalink to &quot;Key Libraries and SDKs&quot;">​</a></h2><ul><li><code>@rhinestone/module-sdk</code>, for interaction with ERC-7579 modules <ul><li>NOTE: for compatibility reasons, the module version is locked to <code>0.2.3</code></li></ul></li><li><code>startale-aa-sdk</code> instantiate and manage Startale smart accounts</li><li><code>viem</code> for SC interaction from TS</li><li><code>@dynamic-labs/sdk-react-core</code> for interaction with Dynamic social login features</li><li><code>@dynamic-labs/ethereum</code> for enabling the Sonieum EVM network during authentication</li></ul><h2 id="smart-contracts-on-soneium-minato" tabindex="-1">Smart Contracts on Soneium Minato <a class="header-anchor" href="#smart-contracts-on-soneium-minato" aria-label="Permalink to &quot;Smart Contracts on Soneium Minato&quot;">​</a></h2><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>  # Standard entrypoint v0.7.0 address</span></span>
 <span class="line"><span>  ENTRY_POINT_ADDRESS=0x0000000071727De22E5E9d8BAf0edAc6f37da032</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>  # Startale smart contract wallet related contracts</span></span>
@@ -161,113 +161,110 @@ const isSmartSessionsModuleInstalled = await startaleAccountClientInstance.isMod
 });
 \`\`\`
 </code></pre><h3 id="_6-create-a-session-for-transaction-execution" tabindex="-1">6. <strong>Create a Session for Transaction Execution</strong> <a class="header-anchor" href="#_6-create-a-session-for-transaction-execution" aria-label="Permalink to &quot;6. **Create a Session for Transaction Execution**&quot;">​</a></h3><ul><li>Define permissions for allowed contract calls (e.g., the dice roll function).</li><li>Enable the session by calling the <code>enableSessions</code> function on the Smart Session contract.</li></ul><div class="language-typescript vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">typescript</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> sessionOwner</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> privateKeyToAccount</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(ownerKey </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">as</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> \`0x\${</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">string</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">}\`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">   const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> sessionsModule</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> toSmartSessionsValidator</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     account: startaleAccountClientInstance.account,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     signer: sessionOwner,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">   });</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> sessionOwner</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> privateKeyToAccount</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(ownerKey </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">as</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> \`0x\${</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">string</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">}\`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> sessionsModule</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> toSmartSessionsValidator</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        account: startaleAccountClientInstance.account,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        signer: sessionOwner,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      });</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">   const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> accountSessionClient</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> startaleAccountClientInstance.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">extend</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">smartSessionCreateActions</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(sessionsModule));</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> accountSessionClient</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> startaleAccountClientInstance.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">extend</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">smartSessionCreateActions</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(sessionsModule));</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">   const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> selector</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> toFunctionSelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;writeDiceRoll(uint256)&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">   const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> sessionRequestedInfo</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> CreateSessionDataParams</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">[] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     {</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">       sessionPublicKey: sessionOwner.address, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">// session key signer</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">       actionPoliciesInfo: [</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">         {</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">           contractAddress: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">DICE_ROLL_LEDGER_ADDRESS</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">           functionSelector: selector,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">           sudo: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">         },</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">       ],</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     },</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">   ];</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> selector</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> toFunctionSelector</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;writeDiceRoll(uint256)&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> sessionRequestedInfo</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> CreateSessionDataParams</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">[] </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          sessionPublicKey: sessionOwner.address, </span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">// session key signer</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          actionPoliciesInfo: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">              contractAddress: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">DICE_ROLL_LEDGER_ADDRESS</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">              functionSelector: selector,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">              sudo: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          ],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      ];</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">   const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> createSessionsResponse</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> accountSessionClient.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">grantPermission</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     sessionRequestedInfo,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">   });</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> createSessionsResponse</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> accountSessionClient.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">grantPermission</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        sessionRequestedInfo,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      });</span></span>
 <span class="line"></span>
-<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">   const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> sessionData</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> SessionData</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     granter: startaleAccountClientInstance.account.address,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     description: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">\`Session to increment a counter for \${</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">DICE_ROLL_LEDGER_ADDRESS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">}\`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     sessionPublicKey: sessionOwner.address,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     moduleData: {</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">       permissionIds: createSessionsResponse.permissionIds,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">       action: createSessionsResponse.action,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">       mode: SmartSessionMode.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">USE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">       sessions: createSessionsResponse.sessions,</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">     },</span></span>
-<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">   };</span></span></code></pre></div><h3 id="_7-send-transactions-using-session-keys" tabindex="-1">7. <strong>Send Transactions Using Session Keys</strong> <a class="header-anchor" href="#_7-send-transactions-using-session-keys" aria-label="Permalink to &quot;7. **Send Transactions Using Session Keys**&quot;">​</a></h3><ul><li>Sign transactions using a generated session key.</li><li>The app automatically prepares and sends user operations via the Startale account client.</li></ul><pre><code>\`\`\`Typescript
-
-const isEnabled = await isSessionEnabled({
-    client: startaleAccountClientInstance.account.client as PublicClient,
-    account: {
-      type: &quot;erc7579-implementation&quot;,
-      address: startaleAccountClientInstance.account.address,
-      deployedOnChains: [chain.id],
-    },
-    permissionId: activeSession.moduleData.permissionIds[0],
-  });
-
-  const sessionOwner = privateKeyToAccount(ownerKey);
-  const smartSessionAccountClient = createSmartAccountClient({
-    account: await toStartaleSmartAccount({
-      signer: sessionOwner,
-      accountAddress: activeSession.granter,
-      chain: chain,
-      transport: http(),
-    }),
-    transport: http(BUNDLER_URL),
-    client: publicClient,
-    paymaster: {
-      async getPaymasterData(pmDataParams: GetPaymasterDataParameters) {
-        pmDataParams.paymasterPostOpGasLimit = BigInt(100000);
-        pmDataParams.paymasterVerificationGasLimit = BigInt(200000);
-        pmDataParams.verificationGasLimit = BigInt(500000);
-        const paymasterResponse = await paymasterClient.getPaymasterData(pmDataParams);
-        return paymasterResponse;
-      },
-      async getPaymasterStubData(pmStubDataParams: GetPaymasterDataParameters) {
-        const paymasterStubResponse =
-          await paymasterClient.getPaymasterStubData(pmStubDataParams);
-        return paymasterStubResponse;
-      },
-    },
-    paymasterContext: scsContext,
-    userOperation: {
-      estimateFeesPerGas: async () =&gt; {
-        return {
-          maxFeePerGas: BigInt(10000000),
-          maxPriorityFeePerGas: BigInt(10000000),
-        };
-      },
-    },
-    mock: true,
-  });
-
-  const usePermissionsModule = toSmartSessionsValidator({
-    account: smartSessionAccountClient.account,
-    signer: sessionOwner,
-    moduleData: activeSession.moduleData,
-  });
-
-  const useSmartSessionAccountClient = smartSessionAccountClient.extend(
-    smartSessionUseActions(usePermissionsModule),
-  );
-
-  const callData = encodeFunctionData({
-    abi: DiceRollLedgerAbi,
-    functionName: &quot;writeDiceRoll&quot;,
-    args: [BigInt(value)],
-  });
-
-  const userOpHash = await useSmartSessionAccountClient.usePermission({
-    calls: [
-      {
-        to: DICE_ROLL_LEDGER_ADDRESS,
-        data: callData,
-      },
-    ],
-  });
-\`\`\`
-</code></pre><h2 id="resources" tabindex="-1">Resources <a class="header-anchor" href="#resources" aria-label="Permalink to &quot;Resources&quot;">​</a></h2><ul><li><a href="https://docs.rhinestone.io/" target="_blank" rel="noreferrer">Rhinestone Module SDK</a></li><li><a href="https://docs.dynamic.xyz/" target="_blank" rel="noreferrer">Dynamic Documentation</a></li><li><a href="https://eips.ethereum.org/EIPS/eip-7579" target="_blank" rel="noreferrer">ERC-7579 Standard Proposal</a></li><li><a href="https://viem.sh/" target="_blank" rel="noreferrer">Viem Documentation</a></li></ul>`,34)]))}const o=i(e,[["render",l]]);export{c as __pageData,o as default};
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> sessionData</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> SessionData</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        granter: startaleAccountClientInstance.account.address,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        description: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">\`Session to increment a counter for \${</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">DICE_ROLL_LEDGER_ADDRESS</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">}\`</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        sessionPublicKey: sessionOwner.address,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        moduleData: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          permissionIds: createSessionsResponse.permissionIds,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          action: createSessionsResponse.action,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          mode: SmartSessionMode.</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">USE</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          sessions: createSessionsResponse.sessions,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      };</span></span></code></pre></div><h3 id="_7-send-transactions-using-session-keys" tabindex="-1">7. <strong>Send Transactions Using Session Keys</strong> <a class="header-anchor" href="#_7-send-transactions-using-session-keys" aria-label="Permalink to &quot;7. **Send Transactions Using Session Keys**&quot;">​</a></h3><ul><li>Sign transactions using a generated session key.</li><li>The app automatically prepares and sends user operations via the Startale account client.</li></ul><div class="language-typescript vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">typescript</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> isEnabled</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> isSessionEnabled</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        client: startaleAccountClientInstance.account.client </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">as</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> PublicClient</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        account: {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          type: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;erc7579-implementation&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          address: startaleAccountClientInstance.account.address,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          deployedOnChains: [chain.id],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        permissionId: activeSession.moduleData.permissionIds[</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      });</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> sessionOwner</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> privateKeyToAccount</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(ownerKey);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> smartSessionAccountClient</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> createSmartAccountClient</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        account: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">await</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> toStartaleSmartAccount</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          signer: sessionOwner,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          accountAddress: activeSession.granter,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          chain: chain,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          transport: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">http</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        }),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        transport: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">http</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">BUNDLER_URL</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        client: publicClient,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        paymaster: {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">          async</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> getPaymasterData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">pmDataParams</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> GetPaymasterDataParameters</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            pmDataParams.paymasterPostOpGasLimit </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> BigInt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">100000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            pmDataParams.paymasterVerificationGasLimit </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> BigInt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">200000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            pmDataParams.verificationGasLimit </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> BigInt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">500000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">            const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> paymasterResponse</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> paymasterClient.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">getPaymasterData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(pmDataParams);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">            return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> paymasterResponse;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          },</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">          async</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> getPaymasterStubData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;">pmStubDataParams</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">:</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> GetPaymasterDataParameters</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">) {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">            const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> paymasterStubResponse</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">              await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> paymasterClient.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">getPaymasterStubData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(pmStubDataParams);</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">            return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> paymasterStubResponse;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        paymasterContext: scsContext,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        userOperation: {</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">          estimateFeesPerGas</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">async</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> () </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=&gt;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">            return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">              maxFeePerGas: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">BigInt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">10000000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">              maxPriorityFeePerGas: </span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">BigInt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">10000000</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            };</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        mock: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      });</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> usePermissionsModule</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> toSmartSessionsValidator</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        account: smartSessionAccountClient.account,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        signer: sessionOwner,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        moduleData: activeSession.moduleData,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      });</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> useSmartSessionAccountClient</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> smartSessionAccountClient.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">extend</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">        smartSessionUseActions</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(usePermissionsModule),</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      );</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> callData</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> encodeFunctionData</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        abi: DiceRollLedgerAbi,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        functionName: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;writeDiceRoll&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        args: [</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">BigInt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(value)],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      });</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">      const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> userOpHash</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> =</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> await</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> useSmartSessionAccountClient.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">usePermission</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">({</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        calls: [</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          {</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            to: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">DICE_ROLL_LEDGER_ADDRESS</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">            data: callData,</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">          },</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">        ],</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">      });</span></span></code></pre></div><h2 id="resources" tabindex="-1">Resources <a class="header-anchor" href="#resources" aria-label="Permalink to &quot;Resources&quot;">​</a></h2><ul><li><a href="https://docs.rhinestone.io/" target="_blank" rel="noreferrer">Rhinestone Module SDK</a></li><li><a href="https://docs.dynamic.xyz/" target="_blank" rel="noreferrer">Dynamic Documentation</a></li><li><a href="https://eips.ethereum.org/EIPS/eip-7579" target="_blank" rel="noreferrer">ERC-7579 Standard Proposal</a></li><li><a href="https://viem.sh/" target="_blank" rel="noreferrer">Viem Documentation</a></li></ul>`,34)]))}const g=i(l,[["render",p]]);export{c as __pageData,g as default};
