@@ -98,20 +98,20 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
 
    ```typescript
     import { isEthereumWallet } from "@dynamic-labs/ethereum";
-    import { useDynamicContext } from "@dynamic-labs/sdk-react-core"; 
+    import { useDynamicContext } from "@dynamic-labs/sdk-react-core";
     import { createSmartAccountClient, StartaleAccountClient, StartaleSmartAccount, toStartaleSmartAccount } from "startale-aa-sdk";
 
     const { primaryWallet } = useDynamicContext();
 
     if(!isEthereumWallet(primaryWallet)) {
       console.log('ensure you are using Ethereum')
-    } 
+    }
 
     const walletClient = await primaryWallet.getWalletClient();
 
     // Create a Startale account
     const startaleAccountInstance = await toStartaleSmartAccount({
-          signer: walletClient, 
+          signer: walletClient,
           chain: chain,
           transport: http(),
           index: BigInt(0), // Nonce=index for account instance with same EOA signer as controller

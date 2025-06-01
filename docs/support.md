@@ -2,8 +2,6 @@
 outline: false
 ---
 
-# 🎗️ Hackathon Support
-
 ## Discord
 
 - [SCS Discord community](https://discord.gg/2GuvSdzx)

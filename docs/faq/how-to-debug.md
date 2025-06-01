@@ -41,7 +41,7 @@ The response structure looks like this if the `UserOperation` has been included:
 }
 ```
 
-> ✅ transactionHash present → Operation was included  
+> ✅ transactionHash present → Operation was included
 > ❌ **transactionHash null** → Still pending or dropped
 
 If `success` is `false`, you may also see a `reason` field with the revert reason (if the bundler captured it).
@@ -53,7 +53,7 @@ If `success` is `false`, you may also see a `reason` field with the revert reaso
 If the `transactionHash` is present, go to the testnet block explorer like:
 
 ```jsx
-- https://explorer-testnet.soneium.org/tx/<transactionHash> 
+- https://explorer-testnet.soneium.org/tx/<transactionHash>
 - https://soneium-minato.blockscout.com/tx/<transactionHash>
 ```
 

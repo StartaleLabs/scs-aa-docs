@@ -44,7 +44,7 @@ const signer = createWalletClient({
 });
 
 const startaleAccount = = await toStartaleSmartAccount({
-  signer: walletClient, 
+  signer: walletClient,
   chain: chain,
   transport: http(),
   index: BigInt(0), // Nonce=index for account instance with same EOA signer as controller

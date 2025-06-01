@@ -120,7 +120,7 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
 
     // Create a Startale account
     const startaleAccountInstance = await toStartaleSmartAccount({
-          signer: walletClient, 
+          signer: walletClient,
           chain: chain,
           transport: http(),
           index: BigInt(0), // Nonce=index for account instance with same EOA signer as controller

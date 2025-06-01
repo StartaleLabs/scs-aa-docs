@@ -1,13 +1,13 @@
-# UI Integration Demo (Using Privy)
+# UI Integration Demo
 
 This demo showcases a decentralized dice-rolling game that utilizes smart accounts (ERC-7579) and session-based execution.
-By using social login provider (Privy), and session keys, users can create a smart contract wallet and roll dice without needing to sign every transaction, enhancing UX while maintaining security.
+By using a social login provider (Dynamic or Privy), and session keys, users can create a smart contract wallet, execute arbitrary smart contract functions, and test the smart session module by rolling a dice without needing to sign every transaction, enhancing UX while maintaining security.
 
 It also features optional social recovery module functionality.
 
-Demo app: [https://aa-demo.scs.startale.com/privy](https://aa-demo.scs.startale.com/privy)
+Demo app: [https://aa-demo.scs.startale.com](https://aa-demo.scs.startale.com/)
 
-Demo repo: [https://github.com/StartaleLabs/scs-aa-demo-ui](https://github.com/StartaleLabs/scs-aa-demo-ui/tree/feat/privy)
+Demo repo: [https://github.com/StartaleLabs/scs-aa-demo-ui](https://github.com/StartaleLabs/scs-aa-demo-ui)
 
 
 ## How to Use the Demo
@@ -46,3 +46,10 @@ Demo repo: [https://github.com/StartaleLabs/scs-aa-demo-ui](https://github.com/S
    - Once a session is active, roll the dice using the UI.
    - The result is written on-chain without additional signature prompts.
    - Your roll history and score are fetched directly from the smart contract.
+
+
+## Social login providers
+
+Note: The deployed demo uses Dynamic as an auth provider, but it is possible to use any provider. The demo repo also contains a Privy example branch.
+
+Privy integration branch: [https://github.com/StartaleLabs/scs-aa-demo-ui](https://github.com/StartaleLabs/scs-aa-demo-ui/tree/feat/privy)
