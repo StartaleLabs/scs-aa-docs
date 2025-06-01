@@ -67,7 +67,7 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
 
 [Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/tree/privy/blob/main/src/main.tsx#L17C5-L33C6)
 
-[Privy integration guide](/examples/social-login-privy)
+[Privy integration guide](/getting-started/code-examples/demo-app/social-login)
 
 ### 2. **Initialize clients**
 

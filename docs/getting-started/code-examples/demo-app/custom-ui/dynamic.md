@@ -54,9 +54,9 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
 
 [Dynamic docs](https://docs.dynamic.xyz)
 
-[Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/tree/dynamic/blob/main/src/main.tsx#L17C5-L33C6)
+[Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/)
 
-[Dynamic integration guide](/examples/social-login-dynamic)
+[Dynamic integration guide](/getting-started/code-examples/demo-app/social-login)
 
 ### 2. **Initialize clients**
 
