@@ -32,7 +32,10 @@ export default defineConfig({
             { text: "Tech stack", link: "/getting-started/tech-stack" },
             { text: "Tutorial", link: "/getting-started/tutorial" },
             { text: "Code Examples", link: "/getting-started/code-examples/index", items: [
-              { text: "Quick start scripts", link: "/getting-started/code-examples/quick-start-scripts" },
+              { text: "Quick start scripts", link: "/getting-started/code-examples/quick-start-scripts", items: [
+                { text: "Send Transactions", link: "/getting-started/code-examples/quick-start-scripts/send-transaction" },
+                { text: "ERC20 Token payments", link: "/getting-started/code-examples/quick-start-scripts/erc20-payments" },
+              ] },
               { text: "Demo app", link: "/getting-started/code-examples/demo-app/using-demo-app", items: [
                 {text: "Social Login", link: "/getting-started/code-examples/demo-app/social-login"},
                 {text: "Custom UI with Dynamic", link: "/getting-started/code-examples/demo-app/custom-ui/dynamic"},
