@@ -33,3 +33,15 @@ Paymasters enable gas sponsorship, allowing dApp developers to cover transaction
 The Paymaster API is responsible for providing end users with the signature required for on-chain verification.
 
 To have your User Operations (UOs) sponsored or token payments accepted by SCS Paymasters, you must first obtain a valid paymaster signature from the off-chain Paymaster API. Include this signature in the UO before submitting it to the Bundler. Once the signature is validated by the on-chain Paymaster smart contract, your UO becomes eligible for gas sponsorship or token payments.
+
+
+### Network supported:
+
+|  |  |
+| --- | --- |
+| Network Name | Soneium Minato |
+| ChainId | 1946 |
+| Block explorer | https://soneium-minato.blockscout.com/ |
+| Native token | ETH |
+| Decimal | 18 |
+| Entry point version supported | v0.7 |

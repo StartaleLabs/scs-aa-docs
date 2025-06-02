@@ -1,4 +1,4 @@
-# Creating a custom UI for the demo app
+# Creating a custom UI for the demo app (Using Privy)
 
 This section details the core technologies, smart contracts, and SDKs used in the demo so you can create your own custom interface.
 
@@ -11,7 +11,7 @@ This section details the core technologies, smart contracts, and SDKs used in th
 
 ## Smart Contracts on Soneium Minato
 
-```
+```bash
   # Standard entrypoint v0.7.0 address
   ENTRY_POINT_ADDRESS=0x0000000071727De22E5E9d8BAf0edAc6f37da032
 
@@ -31,7 +31,7 @@ This section details the core technologies, smart contracts, and SDKs used in th
 
 ## Service Urls
 
-```
+```bash
 MINATO_RPC=https://rpc.minato.soneium.org
 BUNDLER_URL=https://soneium-minato.bundler.scs.startale.com?apikey=[API_KEY]
 PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
@@ -65,9 +65,9 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
 
 [Privy docs](https://docs.privy.io/basics/react/setup)
 
-[Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/blob/main/src/main.tsx#L17C5-L33C6)
+[Code in the example repo](https://github.com/StartaleLabs/scs-aa-demo-ui/tree/privy/blob/main/src/main.tsx#L17C5-L33C6)
 
-[Privy integration guide](/examples/social-login)
+[Privy integration guide](/getting-started/code-examples/demo-app/social-login)
 
 ### 2. **Initialize clients**
 
@@ -120,7 +120,7 @@ PAYMASTER_SERVICE_URL=https://paymaster.scs.startale.com/v1?apikey=[API_KEY]
 
     // Create a Startale account
     const startaleAccountInstance = await toStartaleSmartAccount({
-          signer: walletClient, 
+          signer: walletClient,
           chain: chain,
           transport: http(),
           index: BigInt(0), // Nonce=index for account instance with same EOA signer as controller
@@ -173,7 +173,7 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
 - Set up recovery guardians using `getSocialRecoveryValidator` from `@rhinestone/module-sdk`.
 - Install it via the `startaleAccountClientInstance.installModule()` function.
 
-    ```typescript
+```typescript
 
     const socialRecovery = getSocialRecoveryValidator({
       // SET INITIAL CONFIG
@@ -233,14 +233,14 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
       functionName: "getGuardians",
       args: [startaleAccountClientInstance.account.address],
     });
-   ```
+```
 
 ### 5. **Enable Smart Session Module**
 
    - Instantiate the session module with `getSmartSessionsValidator`.
    - Install the module and configure it for executing transactions without signing.
 
-    ```typescript
+```typescript
     const sessionsModule = getSmartSessionsValidator({});
 
     const opHash = await startaleAccountClientInstance.installModule({
@@ -251,14 +251,14 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
     const isSmartSessionsModuleInstalled = await startaleAccountClientInstance.isModuleInstalled({
       module: sessionsModule,
     });
-    ```
+```
 
 ### 6. **Create a Session for Transaction Execution**
 
    - Define permissions for allowed contract calls (e.g., the dice roll function).
    - Enable the session by calling the `enableSessions` function on the Smart Session contract.
 
-   ```typescript
+```typescript
 
     const sessionOwner = privateKeyToAccount(ownerKey as `0x${string}`);
       const sessionsModule = toSmartSessionsValidator({
@@ -297,14 +297,14 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
           sessions: createSessionsResponse.sessions,
         },
       };
-   ```
+```
 
 ### 7. **Send Transactions Using Session Keys**
 
    - Sign transactions using a generated session key.
    - The app automatically prepares and sends user operations via the Startale account client.
 
-    ```Typescript
+```typescript
 
     const isEnabled = await isSessionEnabled({
         client: startaleAccountClientInstance.account.client as PublicClient,
@@ -376,7 +376,7 @@ Paymaster actions and userOperation gas estimation can be overridden with custom
           },
         ],
       });
-    ```
+```
 
 ## Resources
 

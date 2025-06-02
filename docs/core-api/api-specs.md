@@ -21,7 +21,7 @@ JSON-RPC 2.0 over HTTP
 
 `POST method`
 
-### 🔹 `pm_getPaymasterData`
+### `pm_getPaymasterData`
 
 Returns a `paymaster` and `paymasterData` based on the provided `UserOperation`.
 
@@ -33,7 +33,7 @@ Returns a `paymaster` and `paymasterData` based on the provided `UserOperation`.
 - ChainId: 0x79a
 - EntryPointAddress: 0x0000000071727De22E5E9d8BAf0edAc6f37da032
 - calculateGasLimits: Boolean if gas calculations are required
-- TokenAddress: Check the token supported list
+- token: Check the token supported list
 - policyId: This will be shared to you by scs team
 
 #### **Request**
@@ -72,7 +72,7 @@ Returns a `paymaster` and `paymasterData` based on the provided `UserOperation`.
 }
 ```
 
-### 🔹 `pm_getFeeQuotes`
+### `pm_getFeeQuotes`
 
 Returns token-based fee quotes (in ERC20) to cover the gas for the given UserOperation.
 
@@ -109,7 +109,7 @@ This helps users understand:
   "paymasterAddress": "0x...",
   "feeQuotes": [
     {
-      "tokenAddress": "0x...",
+      "token": "0x...",
       "symbol": "ASTR",
       "decimal": 18,
       "exchangeRate": "0x...",
@@ -125,7 +125,7 @@ This helps users understand:
 }
 ```
 
-### 🔹 `pm_getPaymasterStubData`
+### `pm_getPaymasterStubData`
 
 Returns a stub `paymasterData` without actual signature logic (useful for gas estimation/simulation).
 

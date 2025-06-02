@@ -1,0 +1,3 @@
+# FAQ
+
+> Docs coming soon

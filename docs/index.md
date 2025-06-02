@@ -8,17 +8,22 @@ hero:
 
   actions:
     - theme: brand
-      text: Network and API guide
-      link: guide/tech-stack
+      text: Getting Started
+      link: getting-started/tech-stack
     - theme: alt
-      text: Implementation examples
-      link: examples/sponsorship-pm
+      text: Code Examples
+      link: getting-started/code-examples
+    - theme: alt
+      text: API info
+      link: core-api/smart-accounts-overview
+    - theme: alt
+      text: Advanced
+      link: advanced/parallel-tx
+    - theme: alt
+      text: FAQ
+      link: faq/
 
 features:
-  - title: Hackathon details
-    details: Check the rules and other details here
-    link: https://soneium.hackerearth.com/
-    target: _blank
   - title: Soneium docs
     details: Learn more about Soneium and its ecosystem
     link: https://docs.soneium.org/
